@@ -9,24 +9,13 @@ Regulated environments need traceability. Every change an agent makes should be 
 What's inside
 rules/
 └── core/
-    └── cursor/    # Cursor-native rules (.mdc): scope discipline, evidence before "done", small reversible changes
+    └── test-driven-development.mdc
 
-The files are written for Cursor and drop straight into `.cursor/rules`. The content adapts equally to Claude Code and other agentic IDEs: copy the rule body into `CLAUDE.md`, `AGENTS.md`, or the instruction file that tool reads, and trim it to fit your team.
+One Cursor rule, so far. It requires test-driven development in atomic steps: write one failing test and confirm it fails for the right reason, write the minimum code that passes, refactor only while the suite stays green, micro-commit, then repeat. No extra approval is required between those steps when that workflow is followed. The rule applies to every file.
+
+The file is written for Cursor. Copy `rules/core/test-driven-development.mdc` into `.cursor/rules`. The content adapts equally to Claude Code and other agentic IDEs: copy the rule body into `CLAUDE.md`, `AGENTS.md`, or the instruction file that tool reads, and trim it to fit your team. A short set of rules that gets enforced is better than a long set that gets ignored.
 
 More rule sets (workflow, quality, security) will be added over time.
-
-Quick start
-bash
-git clone https://github.com/<org>/agentic-engineering-rules.git
-
-For Cursor, copy the files from `rules/core/cursor/` into `.cursor/rules`. For Claude Code and other agentic IDEs, adapt the same content into the instruction file that tool reads. A short set of rules that gets enforced is better than a long set that gets ignored.
-
-Principles
-Scope is sacred. Change only what the task needs.
-Evidence over assertion. "Done" means verified, not just written.
-Ask before irreversible actions. That includes migrations, deletions, force-pushes, and anything in production.
-Leave a trail. Every change should come with a reason a reviewer can follow.
-Humans own the outcome. Agents speed up the work. Accountability stays with people.
 Contributing
 
 PRs are welcome. Each new rule should state the failure it prevents and, where possible, link to a real-world example. Rules without a reason behind them will be challenged.
